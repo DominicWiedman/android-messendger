@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AndroidMessendger</string>
+    <string name="error_login_passwd_undefined">Все поля обязательны для заполнения</string>
+</resources>
