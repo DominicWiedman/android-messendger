@@ -5,6 +5,7 @@ import com.example.androidmessendger.domain.di.modules.NetModule
 import com.example.androidmessendger.presentation.authentication.auth.AuthFragment
 import com.example.androidmessendger.presentation.authentication.loading.LoadingFragment
 import com.example.androidmessendger.presentation.authentication.registration.RegistrationFragment
+import com.example.androidmessendger.presentation.main.dialogs.DialogsFragment
 import com.example.androidmessendger.presentation.main.users.UsersFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -22,4 +23,5 @@ interface AppComponent {
     fun inject(target: RegistrationFragment)
     fun inject(target: LoadingFragment)
     fun inject(target: UsersFragment)
+    fun inject(target: DialogsFragment)
 }

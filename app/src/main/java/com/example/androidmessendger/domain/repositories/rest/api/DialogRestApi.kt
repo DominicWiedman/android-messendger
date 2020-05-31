@@ -1,5 +1,6 @@
 package com.example.androidmessendger.domain.repositories.rest.api
 
+import android.util.Log
 import com.example.androidmessendger.base.ABaseRestApi
 import com.example.androidmessendger.base.IRestClient
 import com.example.androidmessendger.domain.di.modules.NetModule
@@ -29,7 +30,6 @@ class DialogRestApi : ABaseRestApi<IUserRestApiService> {
 //    }
 
 
-    fun getUsers(accessToken: String): Observable<List<User>> {
-        return service.getUsers(accessToken)
-    }
+    fun getUsers(accessTokenRealm: String) = service.getUsers(accessToken = accessTokenRealm)
+
 }

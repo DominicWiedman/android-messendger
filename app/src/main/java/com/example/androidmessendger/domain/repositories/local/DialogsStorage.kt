@@ -1,6 +1,8 @@
 package com.example.androidmessendger.domain.repositories.local
 
 import com.example.androidmessendger.domain.repositories.models.realm.DialogItem
+import com.example.androidmessendger.domain.repositories.models.rest.User
+import com.example.androidmessendger.domain.repositories.models.rest.Users
 import io.realm.Realm
 import javax.inject.Inject
 

@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.widget.TextView
 import com.example.androidmessendger.App
 import com.example.androidmessendger.R
+import com.example.androidmessendger.base.ABaseActivity
+import com.example.androidmessendger.presentation.main.users.UsersFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ABaseActivity() {
 
 
     companion object {
@@ -22,7 +24,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_container)
+        if (savedInstanceState != null)
+            return
+        replace(UsersFragment())
 
     }
 }

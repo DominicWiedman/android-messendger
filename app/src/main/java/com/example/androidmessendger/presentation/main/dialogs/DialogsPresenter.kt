@@ -1,13 +1,12 @@
-package com.example.androidmessendger.presentation.main.users
+package com.example.androidmessendger.presentation.main.dialogs
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.example.androidmessendger.base.SubRX
 import com.example.androidmessendger.domain.repositories.DialogsRepository
 import javax.inject.Inject
 
 @InjectViewState
-class UsersPresenter : MvpPresenter<IUsersView> {
+class DialogsPresenter : MvpPresenter<IDialogsView> {
 
     private val dialogsRepository: DialogsRepository
 
@@ -16,7 +15,13 @@ class UsersPresenter : MvpPresenter<IUsersView> {
         this.dialogsRepository = dialogsRepository
     }
 
-    override fun onFirstViewAttach() = dialogsRepository.getUsers()
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+//        dialogsRepository.getUsers(SubRX { users, e ->
+//            users?.let {viewState.bindDialogs(users)}
+//            e?.printStackTrace()
+//        })
+    }
 
 //    fun getUsers() {
 //        viewState.lock()

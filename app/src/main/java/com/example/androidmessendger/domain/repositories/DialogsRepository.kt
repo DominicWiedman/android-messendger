@@ -1,12 +1,14 @@
 package com.example.androidmessendger.domain.repositories
 
-import com.example.androidmessendger.base.standardSubscribeIO
+import android.util.Log
+import com.example.androidmessendger.base.SubRX
 import com.example.androidmessendger.domain.repositories.local.DialogsStorage
 import com.example.androidmessendger.domain.repositories.local.UserStorage
 import com.example.androidmessendger.domain.repositories.models.realm.DialogItem
 import com.example.androidmessendger.domain.repositories.models.rest.Token
-import com.example.androidmessendger.domain.repositories.models.rest.User
 import com.example.androidmessendger.domain.repositories.rest.api.DialogRestApi
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class DialogsRepository {
@@ -26,6 +28,10 @@ class DialogsRepository {
     fun createNewDialog(dialog: DialogItem) = storage.createNewDialog(dialog)
 
     fun getUsers() {
-        rest.getUsers(token.access)
+        rest.getUsers(accessTokenRealm =  token.access).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({
+                result -> Log.d("users", result.toString())
+            }, { error -> error.printStackTrace()})
     }
 }
