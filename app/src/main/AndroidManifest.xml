@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.androidmessendger">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    package="com.example.androidmessendger" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -9,10 +11,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
+        <service
+            android:name=".services.MessageService"
+            android:enabled="true"
+            android:exported="true" />
 
-        <activity android:name=".presentation.authentication.AuthenticationActivity" android:label="AmicoCity">
+        <activity
+            android:name=".presentation.authentication.AuthenticationActivity"
+            android:label="AmicoCity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

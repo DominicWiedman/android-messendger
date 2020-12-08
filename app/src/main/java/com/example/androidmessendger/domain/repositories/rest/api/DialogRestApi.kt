@@ -5,7 +5,7 @@ import com.example.androidmessendger.base.ABaseRestApi
 import com.example.androidmessendger.base.IRestClient
 import com.example.androidmessendger.domain.di.modules.NetModule
 import com.example.androidmessendger.domain.repositories.models.rest.User
-import com.example.androidmessendger.domain.repositories.rest.service.IUserRestApiService
+import com.example.androidmessendger.domain.repositories.rest.service.IMessengerRestApiService
 import io.reactivex.Observable
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -13,7 +13,7 @@ import java.io.File
 import javax.inject.Inject
 import javax.inject.Named
 
-class DialogRestApi : ABaseRestApi<IUserRestApiService> {
+class DialogRestApi : ABaseRestApi<IMessengerRestApiService> {
 
     @Inject
     constructor(client: IRestClient) : super(client)
@@ -30,6 +30,18 @@ class DialogRestApi : ABaseRestApi<IUserRestApiService> {
 //    }
 
 
-    fun getUsers(accessTokenRealm: String) = service.getUsers(accessToken = accessTokenRealm)
+    fun getMessages(
+        accessTokenRealm: String,
+        from: Int
+    ) = service.getMessages(
+        accessToken = accessTokenRealm,
+        from = from
+    )
+
+    fun sendMessage(accessTokenRealm: String, message: String, to: Int) =
+        service.sendMessage(accessToken = accessTokenRealm, message = message, to = to)
+
+    fun getNewMessages(accessTokenRealm: String) =
+        service.getNewMessages(accessToken = accessTokenRealm)
 
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp"
+    android:layout_marginRight="50dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/userTitleMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:text="Marcus Grandle"
+            android:textColor="#CACACA"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/messageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Hoooola, amigo"
+            android:textColor="#fff"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@+id/deliveredStatus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:text="Отправлено"
+            android:textAlignment="textEnd"
+            android:textColor="#CACACA"
+            android:textSize="9dp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

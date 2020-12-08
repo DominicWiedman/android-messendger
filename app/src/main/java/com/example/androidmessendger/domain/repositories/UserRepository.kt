@@ -13,11 +13,13 @@ import javax.inject.Inject
 class UserRepository {
     private val storage: UserStorage
     private val rest: UserRestApi
+    private var token: Token? = null
 
     @Inject
     constructor(storage: UserStorage, rest: UserRestApi) {
         this.storage = storage
         this.rest = rest
+        this.token = storage.getToken()
     }
 
     fun registration(observer: SubRX<User>, login: String, pass: String) {
@@ -35,7 +37,14 @@ class UserRepository {
 
     fun logout() = storage.dropAuthentication()
 
-//    fun getUser() = storage.getUser()
+    fun getUsers(observer: SubRX<List<User>>) {
+        token.let {
+            if (it is Token) {
+                rest.getUsers(accessTokenRealm = it.access).standardSubscribeIO(observer)
+            }
+        }
+    }
+
     fun getToken() = storage.getToken()
     fun refreshToken(
         token: Token,

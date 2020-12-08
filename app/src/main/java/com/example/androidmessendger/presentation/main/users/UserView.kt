@@ -9,10 +9,13 @@ import kotlinx.android.synthetic.main.user_row.view.*
 
 class UserView @JvmOverloads constructor(
     context: Context, attr: AttributeSet? = null, defStyleAttr: Int = 0
-) : ABaseView(context, attr, defStyleAttr), ITypeView {
+) : ABaseView(context, attr, defStyleAttr), IUserView {
     override fun getViewId(): Int = R.layout.user_row
 
-    override fun bind(data: User) {
+    override fun bind(data: User, onUserClickListener: OnUserClickListener) {
         userTitle.text = data.login
+        setOnClickListener {
+            onUserClickListener.onUserClick(data)
+        }
     }
 }

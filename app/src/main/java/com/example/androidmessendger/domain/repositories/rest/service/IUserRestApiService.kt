@@ -20,5 +20,5 @@ interface IUserRestApiService {
     ): Call<Token>
 
     @GET("/user/v1/users")
-    fun getUsers(@Header("access_token") accessToken: String): Observable<List<Any>>
+    fun getUsers(@Header("access_token") accessToken: String): Observable<List<User>>
 }

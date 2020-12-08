@@ -4,6 +4,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.androidmessendger.base.SubRX
 import com.example.androidmessendger.domain.repositories.UserRepository
+import com.example.androidmessendger.presentation.main.MainActivity
 import javax.inject.Inject
 
 @InjectViewState
@@ -25,7 +26,7 @@ class RegistrationPresenter : MvpPresenter<IRegistrationView> {
                 viewState.onError(e.localizedMessage)
                 return@SubRX
             }
-
+            MainActivity.show()
         }, login, pass)
     }
 }

@@ -32,4 +32,5 @@ class UserRestApi : ABaseRestApi<IUserRestApiService> {
     fun refreshToken(refreshToken: String) = service.refreshToken(refreshToken)
 
     fun getUsers(accessTokenRealm: String) = service.getUsers(accessToken = accessTokenRealm)
+
 }

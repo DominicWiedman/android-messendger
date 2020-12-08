@@ -1,7 +1,9 @@
 package com.example.androidmessendger.presentation.main.dialogs
 
+import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import com.example.androidmessendger.base.SubRX
 import com.example.androidmessendger.domain.repositories.DialogsRepository
 import javax.inject.Inject
 
@@ -15,24 +17,25 @@ class DialogsPresenter : MvpPresenter<IDialogsView> {
         this.dialogsRepository = dialogsRepository
     }
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-//        dialogsRepository.getUsers(SubRX { users, e ->
-//            users?.let {viewState.bindDialogs(users)}
-//            e?.printStackTrace()
-//        })
+    fun updateDialogs() {
+        viewState.lock()
+        dialogsRepository.loadAllDialogs { dialogs ->
+            viewState.bindDialogs(dialogs)
+        }
     }
 
-//    fun getUsers() {
-//        viewState.lock()
-//        dialogsRepository.getUsers(SubRX { _, e ->
-//            viewState.unlock()
-//
-//            if (e != null) {
-//                e.printStackTrace()
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        updateDialogs()
+
+//        dialogsRepository.getNewMessages(SubRX { messages, e ->
+//            messages?.let {
+//                Log.d("222222222222", it.toString())
+//            }
+//            e?.let {
 //                viewState.onError(e.localizedMessage)
 //                return@SubRX
 //            }
 //        })
-//    }
+    }
 }

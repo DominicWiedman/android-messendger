@@ -1,16 +1,15 @@
-package com.example.androidmessendger.presentation.main.users
+package com.example.androidmessendger.presentation.main.dialogs
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidmessendger.base.ABaseAdapter
-import com.example.androidmessendger.domain.repositories.models.rest.User
-import kotlinx.android.synthetic.main.user_row.view.*
+import com.example.androidmessendger.domain.repositories.models.realm.DialogItem
 
-class UsersAdapter(private val onUserClick: OnUserClickListener) : ABaseAdapter<User, RecyclerView.ViewHolder>() {
+class DialogAdapter(private val onDialogClick: OnDialogClickListener) : ABaseAdapter<DialogItem, RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view: View = UserView(parent.context)
+        val view: View = DialogView(parent.context)
         view.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
@@ -21,12 +20,12 @@ class UsersAdapter(private val onUserClick: OnUserClickListener) : ABaseAdapter<
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val view = holder.itemView
         val currentItem = data[position]
-        if (view is IUserView) {
-            view.bind(currentItem, onUserClick)
+        if (view is IDialogView) {
+            view.bind(currentItem, onDialogClick)
         }
     }
 }
 
-interface OnUserClickListener {
-    fun onUserClick(user: User)
+interface OnDialogClickListener {
+    fun onDialogClick(dialog: DialogItem)
 }

@@ -1,6 +1,5 @@
 package com.example.androidmessendger.domain.repositories.models
 
-import com.example.androidmessendger.domain.repositories.models.realm.DialogItem
 import com.example.androidmessendger.domain.repositories.models.realm.TokenRealm
 import com.example.androidmessendger.domain.repositories.models.realm.UserRealm
 import com.example.androidmessendger.domain.repositories.models.rest.Token
