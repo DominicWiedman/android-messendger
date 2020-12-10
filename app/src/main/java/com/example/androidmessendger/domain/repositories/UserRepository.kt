@@ -37,6 +37,10 @@ class UserRepository {
 
     fun logout() = storage.dropAuthentication()
 
+    fun getUser(): User? {
+        return storage.getUser()
+    }
+
     fun getUsers(observer: SubRX<List<User>>) {
         token.let {
             if (it is Token) {

@@ -16,7 +16,8 @@ import com.example.androidmessendger.presentation.main.IMainActivity
 import kotlinx.android.synthetic.main.dialogs_fragment.*
 import javax.inject.Inject
 
-class DialogsFragment() : ABaseListFragment<DialogItem, RecyclerView.ViewHolder>(), IDialogsView, OnDialogClickListener {
+class DialogsFragment() : ABaseListFragment<DialogItem, RecyclerView.ViewHolder>(), IDialogsView,
+    OnDialogClickListener {
 
 
     override fun getViewId(): Int = R.layout.dialogs_fragment
@@ -40,11 +41,11 @@ class DialogsFragment() : ABaseListFragment<DialogItem, RecyclerView.ViewHolder>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createDialogButton.setOnClickListener {
-           activity?.let {
-               if (it is IMainActivity) {
-                   it.showUsers()
-               }
-           }
+            activity?.let {
+                if (it is IMainActivity) {
+                    it.showUsers()
+                }
+            }
         }
     }
 
@@ -54,8 +55,10 @@ class DialogsFragment() : ABaseListFragment<DialogItem, RecyclerView.ViewHolder>
     }
 
     override fun onDialogClick(dialog: DialogItem) {
-        Log.d("click", "sfasfaasfsa")
-
-        TODO("Not yet implemented")
+        activity?.let {
+            if (it is IMainActivity) {
+                it.showMessages(dialog.id)
+            }
+        }
     }
 }

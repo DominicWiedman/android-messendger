@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.androidmessendger.base.ABaseRestApi
 import com.example.androidmessendger.base.IRestClient
 import com.example.androidmessendger.domain.di.modules.NetModule
+import com.example.androidmessendger.domain.repositories.models.rest.Message
 import com.example.androidmessendger.domain.repositories.models.rest.User
 import com.example.androidmessendger.domain.repositories.rest.service.IMessengerRestApiService
 import io.reactivex.Observable
@@ -39,7 +40,10 @@ class DialogRestApi : ABaseRestApi<IMessengerRestApiService> {
     )
 
     fun sendMessage(accessTokenRealm: String, message: String, to: Int) =
-        service.sendMessage(accessToken = accessTokenRealm, message = message, to = to)
+        service.sendMessage(
+            accessToken = accessTokenRealm,
+            message = Message(message = message, to = to)
+        )
 
     fun getNewMessages(accessTokenRealm: String) =
         service.getNewMessages(accessToken = accessTokenRealm)

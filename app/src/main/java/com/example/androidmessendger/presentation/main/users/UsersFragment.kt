@@ -43,6 +43,12 @@ class UsersFragment : ABaseListFragment<User, RecyclerView.ViewHolder>(), IUsers
         App.appComponent.inject(this)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d("arguments", arguments.toString())
+        Log.d("state", savedInstanceState.toString())
+    }
+
 
     override fun bindUsers(users: List<User>) {
         adapter.data = users.toMutableList()
@@ -52,14 +58,8 @@ class UsersFragment : ABaseListFragment<User, RecyclerView.ViewHolder>(), IUsers
         Log.d("1111", user.login)
         presenter.createNewDialog(user)
         activity?.let {
-            if (it is IMainActivity) {
-                it.showDialogs()
-            }
-//            it.onBackPressed()
+            it.onBackPressed()
         }
-//        activity.let {
-//            if (it is IMainActivity) user.id?.let { it1 -> it.showDialogs(it1) }
-//        }
     }
 
     override fun lock() {

@@ -1,6 +1,5 @@
 package com.example.androidmessendger.services
 
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -10,12 +9,15 @@ import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.androidmessendger.App
 import com.example.androidmessendger.R
 import com.example.androidmessendger.base.SubRX
 import com.example.androidmessendger.domain.repositories.DialogsRepository
+import com.example.androidmessendger.domain.repositories.models.realm.DialogItem
+import com.example.androidmessendger.domain.repositories.models.realm.MessageItem
 import com.example.androidmessendger.presentation.main.MainActivity
 import dagger.Module
 import javax.inject.Inject
@@ -48,8 +50,24 @@ class MessageService : Service() {
             messages?.let {
                 messages.forEach {
                     it.id?.let { it1 ->
+                        val messageItem = MessageItem()
+                        val dialogItem = DialogItem()
+                        messageItem.id = it1
+                        messageItem.dialogId = it.from!!
+                        messageItem.userId = it.from
+                        messageItem.deliveredStatus = it.delivered!!
+                        messageItem.message = it.message
 
-                        sendNotification(it.from.toString(), it.message, it1)
+                        dialogItem.id = it.from
+                        dialogItem.userId = it.from
+                        dialogItem.lastMessage = it.message
+                        dialogItem.userName = it.from.toString()
+
+                        dialogsRepository.createNewDialog(dialogItem, {})
+                        dialogsRepository.addMessageInDialog(messageItem, {message ->
+                            Log.d("message", message.toString())
+                            sendNotification(message.dialogId.toString(), message.message, it1)
+                        })
                     }
                 }
             }

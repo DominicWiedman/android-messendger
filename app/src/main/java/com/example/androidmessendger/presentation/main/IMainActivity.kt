@@ -4,4 +4,5 @@ interface IMainActivity {
     fun showUsers()
     fun showDialogs()
     fun updateDialogs()
+    fun showMessages(dialogId: Int)
 }

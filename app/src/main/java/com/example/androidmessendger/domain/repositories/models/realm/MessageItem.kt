@@ -8,6 +8,7 @@ open class MessageItem : RealmObject() {
     var id: Int = 0
     var dialogId: Int = 0
     var userId: Int = 0
+    var date: String? = null
     var deliveredStatus: Boolean = false
     var message: String = ""
 }

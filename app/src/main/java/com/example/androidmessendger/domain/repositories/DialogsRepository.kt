@@ -26,8 +26,8 @@ class DialogsRepository {
     }
 
     fun updateMessages(observer: SubRX<List<Message>>, from: Int) {
-//        rest.getMessages(accessTokenRealm = token.access, from = from)
-//            .standardSubscribeIO(observer)
+        rest.getMessages(accessTokenRealm = token.access, from = from)
+            .standardSubscribeIO(observer)
     }
 
     fun getMessages(observer: SubRX<List<Message>>, from: Int) {

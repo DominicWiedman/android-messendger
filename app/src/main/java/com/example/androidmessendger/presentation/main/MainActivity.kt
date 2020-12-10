@@ -48,7 +48,11 @@ class MainActivity : ABaseActivity(), IMainActivity {
     }
 
     override fun showUsers() {
-        replace(UsersFragment())
+        replace(UsersFragment(), "UsersFragment")
+    }
+
+    override fun showMessages(dialogId: Int) {
+        replace(MessagesFragment(dialogId), "MessagesFragment")
     }
 
     override fun showDialogs() {

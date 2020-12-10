@@ -1,5 +1,6 @@
 package com.example.androidmessendger.base
 
+import com.example.androidmessendger.domain.repositories.models.rest.Message
 import io.reactivex.Observer
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#383838"
     android:orientation="vertical">
 
@@ -10,7 +11,23 @@
         android:id="@+id/messageList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/message_item"
-        />
+        android:layout_marginBottom="40dp"
+        app:stackFromEnd="true"
+        app:reverseLayout="true"
+        tools:listitem="@layout/message_item" />
+
+    <EditText
+        android:id="@+id/messageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#CACACA"
+        android:hint="Введите сообщение"
+        android:imeOptions="actionSend"
+        android:inputType="textCapWords"
+        android:maxLength="2000"
+        android:maxLines="4"
+        android:padding="10dp"
+        android:textSize="14sp" />
 
 </RelativeLayout>

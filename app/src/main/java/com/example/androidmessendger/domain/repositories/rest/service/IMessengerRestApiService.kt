@@ -19,8 +19,7 @@ interface IMessengerRestApiService {
     @POST("/messenger/v1/send")
     fun sendMessage(
         @Header("access_token") accessToken: String,
-        @Body message: String,
-        @Body to: Int
+        @Body message: Message
     ): Observable<Message>
 
     @GET("/messenger/v1/online")

@@ -21,7 +21,9 @@ class DialogsStorage {
         Realm.getDefaultInstance().use {
             it.executeTransaction { realm ->
                 message.let {
-                    realm.copyToRealmOrUpdate(it)
+                    realm.copyToRealmOrUpdate(it).let {
+                        returnRealm(it)
+                    }
                 }
             }
         }
@@ -38,20 +40,32 @@ class DialogsStorage {
     }
 
     fun getMessagesForDialog(returnRealm: (data: List<MessageItem>) -> Unit, dialogId: Int) {
+        Realm.getDefaultInstance().addChangeListener {
+            val messages = it.where(MessageItem::class.java).equalTo("dialogId", dialogId).sort("date").findAll()
+            val list = it.copyFromRealm(messages)
+            returnRealm(list)
+        }
         Realm.getDefaultInstance().use {
-            val messages = it.where(MessageItem::class.java).equalTo("dialogId", dialogId).findAll()
+            val messages = it.where(MessageItem::class.java).equalTo("dialogId", dialogId).sort("date").findAll()
             val list = it.copyFromRealm(messages)
             returnRealm(list)
         }
     }
 
     fun loadAllDialogs(returnRealm: (data: List<DialogItem>) -> Unit) {
+
         Realm.getDefaultInstance().use {
 
             val dialogs = it.where(DialogItem::class.java).findAll()
             val list = it.copyFromRealm(dialogs)
 
-            Log.d("222222222222222222223", list.toString())
+            returnRealm(list)
+        }
+        // TODO Костыль
+        Realm.getDefaultInstance().addChangeListener {
+            val dialogs = it.where(DialogItem::class.java).findAll()
+            val list = it.copyFromRealm(dialogs)
+
             returnRealm(list)
         }
     }
